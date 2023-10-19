@@ -9,28 +9,35 @@ def main():
         print("2. Listar productos")
         print("3. Salir")
 
-       
-
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
             codigo = input("Ingrese el código del producto: ")
             nombre = input("Ingrese el nombre del producto: ")
-            precio = float(input("Ingrese el precio del producto: "))
-            stock = int(input("Ingrese el stock del producto: "))
+            
+            try:
+                precio = float(input("Ingrese el precio del producto: "))
+                stock = int(input("Ingrese el stock del producto: "))
+            except ValueError:
+                print("Por favor, ingrese valores numéricos válidos.")
+                continue
+
             controlador.agregar_producto(codigo, nombre, precio, stock)
             print("Producto agregado con éxito.")
+            
         elif opcion == "2":
-            print("Lista de productos:")
+            print("\nLista de productos:")
             productos = controlador.listar_productos()
             for producto in productos:
-                print(producto)
+                print(f"ID: {producto[0]}, Código: {producto[1]}, Nombre: {producto[2]}, Precio: ${producto[3]}, Stock: {producto[4]}")
+                
         elif opcion == "3":
             print("Cerrando la base de datos y saliendo del programa.")
             controlador.cerrar_base_datos()
             break
+            
         else:
-            print("opcion no valido")
+            print("Opción no válida.")
 
 if __name__ == "__main__":
- main()
+    main()
