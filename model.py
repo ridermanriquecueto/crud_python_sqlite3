@@ -30,6 +30,16 @@ class BaseDatosProductos:
             print(f"Error al agregar producto: {e}")
             self.conn.rollback()
 
+
+    def actualizar_producto(self, codigo, nombre, precio, stock):    
+
+     
+
+
+    def eliminar_producto(self, codigo, nombre, precio, stock):   
+
+
+
     def listar_productos(self):
         cursor = self.conn.cursor()
         cursor.execute('SELECT id, codigo, nombre, precio, stock FROM productos')

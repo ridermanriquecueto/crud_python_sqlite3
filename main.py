@@ -6,8 +6,10 @@ def main():
     while True:
         print("\nMenú:")
         print("1. Agregar producto")
-        print("2. Listar productos")
-        print("3. Salir")
+        print("2. Actualizar productos")
+        print("3. Eliminar productos")
+        print("4. Listar productos")
+        print("5. Salir")
 
         opcion = input("Seleccione una opción: ")
 
@@ -25,19 +27,20 @@ def main():
             controlador.agregar_producto(codigo, nombre, precio, stock)
             print("Producto agregado con éxito.")
             
-        elif opcion == "2":
+        elif opcion == "4": 
             print("\nLista de productos:")
             productos = controlador.listar_productos()
             for producto in productos:
                 print(f"ID: {producto[0]}, Código: {producto[1]}, Nombre: {producto[2]}, Precio: ${producto[3]}, Stock: {producto[4]}")
                 
-        elif opcion == "3":
+        elif opcion == "5":
             print("Cerrando la base de datos y saliendo del programa.")
             controlador.cerrar_base_datos()
             break
             
         else:
             print("Opción no válida.")
+ 
 
 if __name__ == "__main__":
     main()
