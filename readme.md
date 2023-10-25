@@ -27,3 +27,7 @@ Las contribuciones son bienvenidas. Por favor, abra un issue para discutir los c
 
 Licencia
 [Nombre de la licencia, ej. MIT, GNU, etc. Si no tiene licencia, simplemente puede omitir esta sección]
+
+### to do
+
+realizar lo que falta para que sea un crud
