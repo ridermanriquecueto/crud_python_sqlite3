@@ -29,12 +29,38 @@ class BaseDatosProductos:
         except Exception as e:
             print(f"Error al agregar producto: {e}")
             self.conn.rollback()
-
+ 
     def listar_productos(self):
         cursor = self.conn.cursor()
         cursor.execute('SELECT id, codigo, nombre, precio, stock FROM productos')
         return cursor.fetchall()
 
+    
+
+    def actualizar_producto(self, codigo, nuevo_nombre, nuevo_precio, nuevo_stock):
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute('''
+            UPDATE productos 
+            SET nombre = ?, precio = ?, stock = ?
+            WHERE codigo = ?;
+            ''', (nuevo_nombre, nuevo_precio, nuevo_stock, codigo))
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error al actualizar producto: {e}")
+            self.conn.rollback()
+
+    def eliminar_producto(self, codigo):
+        try:
+            cursor = self.conn.cursor()
+            cursor.execute('''
+            DELETE FROM productos 
+            WHERE codigo = ?;
+            ''', (codigo,))
+            self.conn.commit()
+        except Exception as e:
+            print(f"Error al eliminar producto: {e}")
+            self.conn.rollback()          
     def cerrar(self):
         if self.conn:
             self.conn.close()
