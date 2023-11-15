@@ -18,6 +18,11 @@ class BaseDatosProductos:
         );
         ''')
         self.conn.commit()
+    
+    def obtener_producto_por_codigo(self, codigo):
+        cursor = self.conn.cursor()
+        cursor.execute('SELECT id, codigo, nombre, precio, stock FROM productos WHERE codigo = ?', (codigo,))
+        return cursor.fetchone()    
 
     def agregar_producto(self, codigo, nombre, precio, stock):
         try:
